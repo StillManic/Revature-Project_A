@@ -54,7 +54,7 @@ public class Converter_Single_Menu {
 			printMenu();
 			
 			Scanner scanner = new Scanner(System.in);
-			menuSelection = scanner.nextInt();
+			if (scanner.hasNextInt()) menuSelection = scanner.nextInt();
 			// Handle Quit option
 			if (menuSelection == MENU.length + 1) { //Skips the "scanner.nextFloat()" below so that you only have to enter the "Quit" option once 
 				System.out.println("Goodbye.");
@@ -62,7 +62,7 @@ public class Converter_Single_Menu {
 			}
 			
 			// Begin conversions
-			from = scanner.nextFloat();
+			if (scanner.hasNextFloat()) from = scanner.nextFloat();
 			switch (menuSelection) {
 				case 1: //in -> cm
 					to = from * 2.54f;

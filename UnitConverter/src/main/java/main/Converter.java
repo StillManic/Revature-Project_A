@@ -73,14 +73,14 @@ public class Converter {
 		System.out.println("\n\n\nLength Conversions:");
 		printMenu(LENGTH_MENU, true);
 		
-		menuSelection = scanner.nextInt();
+		if (scanner.hasNextInt()) menuSelection = scanner.nextInt();
 		
 		if (menuSelection > LENGTH_MENU.length) {	// Return to Main Menu
 			System.out.print("\n\n\n");
 			return;
 		}
 		
-		from = scanner.nextFloat();
+		if (scanner.hasNextFloat()) from = scanner.nextFloat();
 		switch (menuSelection) {
 			case 1: //in -> cm
 				to = from * 2.54f;
@@ -109,14 +109,14 @@ public class Converter {
 		System.out.println("\n\n\nTemperature Conversions:");
 		printMenu(TEMPERATURE_MENU, true);
 		
-		menuSelection = scanner.nextInt();
+		if (scanner.hasNextInt()) menuSelection = scanner.nextInt();
 		
 		if (menuSelection > TEMPERATURE_MENU.length) {	// Return to Main Menu
 			System.out.print("\n\n\n");
 			return;
 		}
 		
-		from = scanner.nextFloat();
+		if (scanner.hasNextFloat()) from = scanner.nextFloat();
 		switch (menuSelection) {
 			case 1: //F -> C
 				to = (5.0f / 9.0f) * (from - 32);
@@ -137,14 +137,14 @@ public class Converter {
 		System.out.println("\n\n\nAngle Conversions:");
 		printMenu(ANGLE_MENU, true);
 		
-		menuSelection = scanner.nextInt();
+		if (scanner.hasNextInt()) menuSelection = scanner.nextInt();
 		
 		if (menuSelection > ANGLE_MENU.length) {	// Return to Main Menu
 			System.out.print("\n\n\n");
 			return;
 		}
 		
-		from = scanner.nextFloat();
+		if (scanner.hasNextFloat()) from = scanner.nextFloat();
 		switch (menuSelection) {
 			case 1: //D -> R
 				to = (float) Math.toRadians(from);
@@ -165,14 +165,14 @@ public class Converter {
 		System.out.println("\n\n\nPressure Conversions:");
 		printMenu(PRESSURE_MENU, true);
 		
-		menuSelection = scanner.nextInt();
+		if (scanner.hasNextInt()) menuSelection = scanner.nextInt();
 		
 		if (menuSelection > PRESSURE_MENU.length) {	// Return to Main Menu
 			System.out.print("\n\n\n");
 			return;
 		}
 		
-		from = scanner.nextFloat();
+		if (scanner.hasNextFloat()) from = scanner.nextFloat();
 		switch (menuSelection) {
 			case 1: //pascal -> bar
 				to = from / 100000f;
@@ -209,14 +209,14 @@ public class Converter {
 		System.out.println("\n\n\nMass Conversions:");
 		printMenu(MASS_MENU, true);
 		
-		menuSelection = scanner.nextInt();
+		if (scanner.hasNextInt()) menuSelection = scanner.nextInt();
 		
 		if (menuSelection > MASS_MENU.length) {	// Return to Main Menu
 			System.out.print("\n\n\n");
 			return;
 		}
 		
-		from = scanner.nextFloat();
+		if (scanner.hasNextFloat()) from = scanner.nextFloat();
 		switch (menuSelection) {
 			case 1: //lb -> kg
 				to = from / 2.20462f;
@@ -249,7 +249,7 @@ public class Converter {
 			printMainMenu();
 			
 			scanner = new Scanner(System.in);
-			menuSelection = scanner.nextInt();
+			if (scanner.hasNextInt()) menuSelection = scanner.nextInt();
 			
 			if (menuSelection > MAIN_MENU.length) {		// Handle Quit
 				scanner.close();
