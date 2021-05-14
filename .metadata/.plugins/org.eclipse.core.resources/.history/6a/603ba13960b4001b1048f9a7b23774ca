@@ -1,0 +1,117 @@
+package main;
+
+import java.util.Scanner;
+
+public class Converter {
+	private static String[] MENU = {
+			" 1. Inches to Centimeters",
+			" 2. Centimeters to Inches",
+			" 3. Miles to Kilometers",
+			" 4. Kilometers to Miles",
+			" 5. Farenheit to Celcius",
+			" 6. Celcius to Farenheit",
+			" 7. Degrees to Radians",
+			" 8. Radians to Degrees",
+			" 9. Pascal to Bar",
+			"10. Bar to Pascal",
+			"11. Pascal to PSI",
+			"12. PSI to Pascal",
+			"13. Bar to PSI",
+			"14. PSI to Bar",
+			"15. Pounds to Kilograms",
+			"16. Kilograms to Pounds"
+	};
+	
+	private static void printMenu() {
+		System.out.println("Please select an option, followed by the value to convert:");
+		for (String option : MENU) System.out.println(option);
+		System.out.println("" + (MENU.length + 1) + ". Quit"); //Sneaky way to add the Quit option, allowing MENU to be added to without having to change the Quit option's number label 
+	}
+	
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		int menuSelection = 0;
+		
+		while (menuSelection != MENU.length + 1) {
+			printMenu();
+			
+			Scanner scanner = new Scanner(System.in);
+			menuSelection = scanner.nextInt();
+			// Handle Quit option
+			if (menuSelection == MENU.length + 1) break; //Skips the "scanner.nextFloat()" below so that you only have to enter the "Quit" option once
+			
+			// Begin conversions
+			float from = scanner.nextFloat();
+			float to;
+			switch (menuSelection) {
+				case 1: //in -> cm
+					to = from * 2.54f;
+					System.out.println(from + " inch(es) = " + to + " centimeter(s)");
+					break;
+				case 2: //cm -> in
+					to = from / 2.54f;
+					System.out.println(from + " centimeter(s) = " + to + " inch(es)");
+					break;
+				case 3: //miles -> kilometers
+					to = from * 1.609344f;
+					System.out.println(from + " mile(s) = " + to + " kilometer(s)");
+					break;
+				case 4:
+					to = from / 1.609344f;
+					System.out.println(from + " kilometer(s) = " + to + " mile(s)");
+					break;
+				case 5: //F -> C
+					to = (5.0f / 9.0f) * (from - 32);
+					System.out.println(from + "F = " + to + "C");
+					break;
+				case 6: //C -> F
+					to = (1.8f * from) + 32;
+					System.out.println(from + "C = " + to + "F");
+					break;
+				case 7: //D -> R
+					to = (float) Math.toRadians(from);
+					System.out.println(from + " degree(s) = " + to + " radian(s)");
+					break;
+				case 8: //R -> D
+					to = (float) Math.toDegrees(from);
+					System.out.println(from + " radian(s) = " + to + " degree(s)");
+					break;
+				case 9: //pascal -> bar
+					to = from / 100000;
+					System.out.println(from + " pascal = " + to + " bar");
+					break;
+				case 10: //bar -> pascal
+					to = from * 100000;
+					System.out.println(from + " bar = " + to + " pascal");
+					break;
+				case 11: //pascal -> PSI
+					to = from / 6894.757f;
+					System.out.println(from + " pascal = " + to + " PSI");
+					break;
+				case 12: //PSI -> pascal
+					to = from * 6894.757f;
+					System.out.println(from + " PSI = " + to + " pascal");
+					break;
+				case 13: //bar -> PSI
+					to = from * 14.5038f;
+					System.out.println(from + " bar = " + to + " PSI");
+					break;
+				case 14: //PSI -> bar
+					to = from / 14.5038f;
+					System.out.println(from + " PSI = " + to + " bar");
+					break;
+				case 15: //lb -> kg
+					to = from * 2.20462f;
+					System.out.println(from + " lbs = " + to + " kg");
+					break;
+				case 16: //kg -> lb
+					to = from / 2.20462f;
+					System.out.println(from + " kg = " + to + " lb");
+					break;
+				default: break;
+			}
+			
+			System.out.println();
+		}
+	}
+}

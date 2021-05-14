@@ -1,0 +1,37 @@
+package main;
+
+import java.util.Scanner;
+
+public class Converter {
+	private static String[] MENU = {
+			"1. Inches to Centimeters",
+			"2. Centimeters to Inches",
+			"3. Farenheit to Celcius",
+			"4. Celcius to Farenheit",
+			"5. Quit"
+	};
+	
+	public static void main(String[] args) {
+		int menuSelection = 0;
+		
+		while (menuSelection != -1) {
+			System.out.println("Please select an option:");
+			for (String option : MENU) System.out.println(option);
+//			System.out.println("" + (MENU.length + 1) + ". Quit");
+			
+			Scanner scanner = new Scanner(System.in);
+			switch (scanner.nextInt()) {
+				case 
+			}
+		}
+	}
+	
+//	public static void printMenu() {
+//		System.out.println("Please select an option:");
+//		System.out.println("1. Inches to Centimeters");
+//		System.out.println("2. Centimeters to Inches");
+//		System.out.println("3. Farenheit to Celcius");
+//		System.out.println("4. Celcius to Farenheit");
+//		System.out.println("5. Quit");
+//	}
+}

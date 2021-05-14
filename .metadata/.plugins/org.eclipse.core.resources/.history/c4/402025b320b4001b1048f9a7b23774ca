@@ -1,0 +1,24 @@
+package main;
+
+import java.util.Scanner;
+
+public class Converter {
+	private static String[] MENU = {
+			"1. Cups to Teaspoons",
+			"2. Miles to Kilometers",
+			"3. US Gallons to Imperial Gallons"
+	};
+	
+	public static void main(String[] args) {
+		int menuSelection = 0;
+		
+		while (menuSelection != -1) {
+			System.out.println("Please select an option:");
+			for (String option : MENU) System.out.println(option);
+			System.out.println("" + (MENU.length + 1) + ". Quit");
+			
+			Scanner scanner = new Scanner(System.in);
+			if (scanner.hasNextLine()) System.out.println("Scanner has a line!");
+		}
+	}
+}

@@ -1,0 +1,351 @@
+package main;
+
+import java.util.Scanner;
+
+public class Converter {
+//	private static String[] MENU = {
+//			" 1. Inches to Centimeters",
+//			" 2. Centimeters to Inches",
+//			" 3. Miles to Kilometers",
+//			" 4. Kilometers to Miles",
+//			" 5. Farenheit to Celcius",
+//			" 6. Celcius to Farenheit",
+//			" 7. Degrees to Radians",
+//			" 8. Radians to Degrees",
+//			" 9. Pascal to Bar",
+//			"10. Bar to Pascal",
+//			"11. Pascal to PSI",
+//			"12. PSI to Pascal",
+//			"13. Bar to PSI",
+//			"14. PSI to Bar",
+//			"15. Pounds to Kilograms",
+//			"16. Kilograms to Pounds"
+//	};
+	
+	private static String[] MAIN_MENU = {
+			"1. Length",
+			"2. Temperature",
+			"3. Angle",
+			"4. Pressure",
+			"5. Mass"
+	};
+	
+	private static String[] LENGTH_MENU = {
+			"1. Inches to Centimeters",
+			"2. Centimeters to Inches",
+			"3. Miles to Kilometers",
+			"4. Kilometers to Miles"
+	};
+	
+	private static String[] TEMPERATURE_MENU = {
+			"1. Farenheit to Celcius",
+			"2. Celcius to Farenheit"
+	};
+	
+	private static String[] ANGLE_MENU = {
+			"1. Degrees to Radians",
+			"2. Radians to Degrees"
+	};
+	
+	private static String[] PRESSURE_MENU = {
+			"1. Pascal to Bar",
+			"2. Bar to Pascal",
+			"3. Pascal to PSI",
+			"4. PSI to Pascal",
+			"5. Bar to PSI",
+			"6. PSI to Bar"
+	};
+	
+	private static String[] MASS_MENU = {
+			"1. Pounds to Kilograms",
+			"2. Kilograms to Pounds"
+	};
+	
+	private static int menuSelection;
+	private static float from, to;
+	private static boolean quit = false;
+	private static Scanner scanner;
+	
+//	private static void printMenu() {
+//		System.out.println("Please select an option, followed by the value to convert:");
+//		for (String option : MENU) System.out.println(option);
+//		System.out.println("" + (MENU.length + 1) + ". Quit"); //Sneaky way to add the Quit option, allowing MENU to be added to (in development) without having to change the Quit option's number label 
+//	}
+	
+	private static void printMenu(String[] menu, boolean printReturnInsteadOfQuit) {
+		for (String option : menu) System.out.println(option);
+		System.out.println("" + (menu.length + 1) + ". " + (printReturnInsteadOfQuit ? "Return to Main Menu" : "Quit"));
+	}
+	
+	private static void printMainMenu() {
+		System.out.println("Please select an option:");
+		printMenu(MAIN_MENU, false);
+	}
+	
+	private static void printAndHandleLengthMenu() {
+		System.out.println("Length Conversions:");
+		printMenu(LENGTH_MENU, true);
+		
+		menuSelection = scanner.nextInt();
+		
+		if (menuSelection >= LENGTH_MENU.length) {
+//			quit();
+			return;
+		}
+		
+		from = scanner.nextFloat();
+		switch (menuSelection) {
+			case 1: //in -> cm
+				to = from * 2.54f;
+				printResult("inch(es)", "centimeters(s)");
+				break;
+			case 2: //cm -> in
+				to = from / 2.54f;
+				printResult("centimeter(s)", "inch(es)");
+				break;
+			case 3: //miles -> kilometers
+				to = from * 1.609344f;
+				printResult("mile(s)", "kilometer(s)");
+				break;
+			case 4: //kilometers -> miles
+				to = from / 1.609344f;
+				printResult("kilometer(s)", "mile(s)");
+				break;
+			default: break;
+		}
+	}
+	
+	private static void printAndHandleTemperatureMenu() {
+		System.out.println("Temperature Conversions:");
+		printMenu(TEMPERATURE_MENU, true);
+		
+		menuSelection = scanner.nextInt();
+		
+		if (menuSelection >= TEMPERATURE_MENU.length) {
+//			quit();
+			return;
+		}
+		
+		from = scanner.nextFloat();
+		switch (menuSelection) {
+			case 1: //F -> C
+				to = (5.0f / 9.0f) * (from - 32);
+				printResult("F", "C");
+				break;
+			case 2: //C -> F
+				to = (1.8f * from) + 32;
+				printResult("C", "F");
+				break;
+			default: break;
+		}
+	}
+	
+	private static void printAndHandleAngleMenu() {
+		System.out.println("Angle Conversions:");
+		printMenu(ANGLE_MENU, true);
+		
+		menuSelection = scanner.nextInt();
+		
+		if (menuSelection >= ANGLE_MENU.length) {
+//			quit();
+			return;
+		}
+		
+		from = scanner.nextFloat();
+		switch (menuSelection) {
+			case 1: //D -> R
+				to = (float) Math.toRadians(from);
+				printResult("degree(s)", "radian(s)");
+				break;
+			case 2: //R -> D
+				to = (float) Math.toDegrees(from);
+				printResult("radian(s)", "degree(s)");
+				break;
+			default: break;
+		}
+	}
+	
+	private static void printAndHandlePressureMenu() {
+		System.out.println("Pressure Conversions:");
+		printMenu(PRESSURE_MENU, true);
+		
+		menuSelection = scanner.nextInt();
+		
+		if (menuSelection >= PRESSURE_MENU.length) {
+//			quit();
+			return;
+		}
+		
+		from = scanner.nextFloat();
+		switch (menuSelection) {
+			case 1: //pascal -> bar
+				to = from / 100000f;
+				printResult("pascal", "bar");
+				break;
+			case 2: //bar -> pascal
+				to = from * 100000f;
+				printResult("bar", "pascal");
+				break;
+			case 3: //pascal -> PSI
+				to = from / 6894.757f;
+				printResult("pascal", "PSI");
+				break;
+			case 4: //PSI -> pascal
+				to = from * 6894.757f;
+				printResult("PSI", "pascal");
+				break;
+			case 5: //bar -> PSI
+				to = from * 14.5038f;
+				printResult("bar", "PSI");
+				break;
+			case 6: //PSI -> bar
+				to = from / 14.5038f;
+				printResult("PSI", "bar");
+				break;
+			default: break;
+		}
+	}
+	
+	private static void printAndHandleMassMenu() {
+		System.out.println("Mass Conversions:");
+		printMenu(MASS_MENU, true);
+		
+		menuSelection = scanner.nextInt();
+		
+		if (menuSelection >= MASS_MENU.length) {
+//			quit();
+			return;
+		}
+		
+		from = scanner.nextFloat();
+		switch (menuSelection) {
+			case 15: //lb -> kg
+				to = from / 2.20462f;
+				printResult("lb(s)", "kg(s)");
+				break;
+			case 16: //kg -> lb
+				to = from * 2.20462f;
+				printResult("kg(s)", "lb(s)");
+				break;
+			default: break;
+		}
+	}
+	
+	private static void printResult(String fromUnit, String toUnit) {
+		System.out.print("\n\n");
+		System.out.println("-------------------- Answer --------------------");
+		System.out.println(from + " " + fromUnit + " = " + to + " " + toUnit);
+		System.out.println("------------------------------------------------");
+		System.out.print("\n\n");
+	}
+	
+	private static void quit() {
+		scanner.close();
+		quit = true;
+		System.out.println("Goodbye.");
+	}
+	
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		menuSelection = 0;
+		
+		while (!quit) {
+//			printMenu();
+			printMainMenu();
+			
+			if (scanner == null) scanner = new Scanner(System.in);
+			if (scanner.hasNext()) menuSelection = scanner.nextInt();
+			// Handle Quit option
+//			if (menuSelection == MENU.length + 1) { //Skips the "scanner.nextFloat()" below so that you only have to enter the "Quit" option once 
+//				System.out.println("Goodbye.");
+//				break;
+//			}
+			
+			if (menuSelection >= MAIN_MENU.length) {
+				quit();
+				break;
+			}
+			
+			// Begin conversions
+//			from = scanner.nextFloat();
+			switch (menuSelection) {
+				case 1: printAndHandleLengthMenu(); 	 break;	// Length
+				case 2: printAndHandleTemperatureMenu(); break;	// Temperature
+				case 3: printAndHandleAngleMenu();		 break;	// Angle
+				case 4: printAndHandlePressureMenu(); 	 break;	// Pressure
+				case 5: printAndHandleMassMenu(); 		 break;	// Mass
+				default: break;
+			}
+			
+//			switch (menuSelection) {
+//				case 1: //in -> cm
+//					to = from * 2.54f;
+//					printResult("inch(es)", "centimeters(s)");
+//					break;
+//				case 2: //cm -> in
+//					to = from / 2.54f;
+//					printResult("centimeter(s)", "inch(es)");
+//					break;
+//				case 3: //miles -> kilometers
+//					to = from * 1.609344f;
+//					printResult("mile(s)", "kilometer(s)");
+//					break;
+//				case 4: //kilometers -> miles
+//					to = from / 1.609344f;
+//					printResult("kilometer(s)", "mile(s)");
+//					break;
+//				case 5: //F -> C
+//					to = (5.0f / 9.0f) * (from - 32);
+//					printResult("F", "C");
+//					break;
+//				case 6: //C -> F
+//					to = (1.8f * from) + 32;
+//					printResult("C", "F");
+//					break;
+//				case 7: //D -> R
+//					to = (float) Math.toRadians(from);
+//					printResult("degree(s)", "radian(s)");
+//					break;
+//				case 8: //R -> D
+//					to = (float) Math.toDegrees(from);
+//					printResult("radian(s)", "degree(s)");
+//					break;
+//				case 9: //pascal -> bar
+//					to = from / 100000f;
+//					printResult("pascal", "bar");
+//					break;
+//				case 10: //bar -> pascal
+//					to = from * 100000f;
+//					printResult("bar", "pascal");
+//					break;
+//				case 11: //pascal -> PSI
+//					to = from / 6894.757f;
+//					printResult("pascal", "PSI");
+//					break;
+//				case 12: //PSI -> pascal
+//					to = from * 6894.757f;
+//					printResult("PSI", "pascal");
+//					break;
+//				case 13: //bar -> PSI
+//					to = from * 14.5038f;
+//					printResult("bar", "PSI");
+//					break;
+//				case 14: //PSI -> bar
+//					to = from / 14.5038f;
+//					printResult("PSI", "bar");
+//					break;
+//				case 15: //lb -> kg
+//					to = from / 2.20462f;
+//					printResult("lb(s)", "kg(s)");
+//					break;
+//				case 16: //kg -> lb
+//					to = from * 2.20462f;
+//					printResult("kg(s)", "lb(s)");
+//					break;
+//				default: break;
+//			}
+			
+//			scanner.close();
+		}
+	}
+}
