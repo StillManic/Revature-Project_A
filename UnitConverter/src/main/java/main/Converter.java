@@ -48,7 +48,13 @@ public class Converter {
 	private static Scanner scanner;
 	
 	private static void printMenu(String[] menu, boolean printReturnInsteadOfQuit) {
-		for (String option : menu) System.out.println(option);
+		for (String option : menu) System.out.println(option);	// Print the menu
+		
+		/* 
+		 * This is a sneaky way to add a "Quit" or "Return to Main Menu" 
+		 * option to the printed menu, so that they don't have to be 
+		 * included in the arrays above
+		 */
 		System.out.println("" + (menu.length + 1) + ". " + (printReturnInsteadOfQuit ? "Return to Main Menu" : "Quit"));
 	}
 	
@@ -64,12 +70,15 @@ public class Converter {
 	 * Length
 	 */
 	private static void printAndHandleLengthMenu() {
-		System.out.println("Length Conversions:");
+		System.out.println("\n\n\nLength Conversions:");
 		printMenu(LENGTH_MENU, true);
 		
 		menuSelection = scanner.nextInt();
 		
-		if (menuSelection > LENGTH_MENU.length) return;
+		if (menuSelection > LENGTH_MENU.length) {	// Return to Main Menu
+			System.out.print("\n\n\n");
+			return;
+		}
 		
 		from = scanner.nextFloat();
 		switch (menuSelection) {
@@ -97,12 +106,15 @@ public class Converter {
 	 * Temperature
 	 */
 	private static void printAndHandleTemperatureMenu() {
-		System.out.println("Temperature Conversions:");
+		System.out.println("\n\n\nTemperature Conversions:");
 		printMenu(TEMPERATURE_MENU, true);
 		
 		menuSelection = scanner.nextInt();
 		
-		if (menuSelection > TEMPERATURE_MENU.length) return;
+		if (menuSelection > TEMPERATURE_MENU.length) {	// Return to Main Menu
+			System.out.print("\n\n\n");
+			return;
+		}
 		
 		from = scanner.nextFloat();
 		switch (menuSelection) {
@@ -122,12 +134,15 @@ public class Converter {
 	 * Angle
 	 */
 	private static void printAndHandleAngleMenu() {
-		System.out.println("Angle Conversions:");
+		System.out.println("\n\n\nAngle Conversions:");
 		printMenu(ANGLE_MENU, true);
 		
 		menuSelection = scanner.nextInt();
 		
-		if (menuSelection > ANGLE_MENU.length) return;
+		if (menuSelection > ANGLE_MENU.length) {	// Return to Main Menu
+			System.out.print("\n\n\n");
+			return;
+		}
 		
 		from = scanner.nextFloat();
 		switch (menuSelection) {
@@ -147,12 +162,15 @@ public class Converter {
 	 * Pressure
 	 */
 	private static void printAndHandlePressureMenu() {
-		System.out.println("Pressure Conversions:");
+		System.out.println("\n\n\nPressure Conversions:");
 		printMenu(PRESSURE_MENU, true);
 		
 		menuSelection = scanner.nextInt();
 		
-		if (menuSelection > PRESSURE_MENU.length) return;
+		if (menuSelection > PRESSURE_MENU.length) {	// Return to Main Menu
+			System.out.print("\n\n\n");
+			return;
+		}
 		
 		from = scanner.nextFloat();
 		switch (menuSelection) {
@@ -188,20 +206,23 @@ public class Converter {
 	 * Mass
 	 */
 	private static void printAndHandleMassMenu() {
-		System.out.println("Mass Conversions:");
+		System.out.println("\n\n\nMass Conversions:");
 		printMenu(MASS_MENU, true);
 		
 		menuSelection = scanner.nextInt();
 		
-		if (menuSelection > MASS_MENU.length) return;
+		if (menuSelection > MASS_MENU.length) {	// Return to Main Menu
+			System.out.print("\n\n\n");
+			return;
+		}
 		
 		from = scanner.nextFloat();
 		switch (menuSelection) {
-			case 15: //lb -> kg
+			case 1: //lb -> kg
 				to = from / 2.20462f;
 				printResult("lb(s)", "kg(s)");
 				break;
-			case 16: //kg -> lb
+			case 2: //kg -> lb
 				to = from * 2.20462f;
 				printResult("kg(s)", "lb(s)");
 				break;
@@ -209,6 +230,9 @@ public class Converter {
 		}
 	}
 	
+	/*
+	 * Print Result
+	 */
 	private static void printResult(String fromUnit, String toUnit) {
 		System.out.print("\n\n");
 		System.out.println("-------------------- Answer --------------------");
@@ -227,14 +251,14 @@ public class Converter {
 			scanner = new Scanner(System.in);
 			menuSelection = scanner.nextInt();
 			
-			if (menuSelection > MAIN_MENU.length) {
+			if (menuSelection > MAIN_MENU.length) {		// Handle Quit
 				scanner.close();
 				quit = true;
-				System.out.println("Goodbye.");
+				System.out.println("\nGoodbye.");
 				break;
 			}
 			
-			// Begin conversions
+			// Handle Main Menu
 			switch (menuSelection) {
 				case 1: printAndHandleLengthMenu(); 	 break;	// Length
 				case 2: printAndHandleTemperatureMenu(); break;	// Temperature
